@@ -1352,3 +1352,37 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+.reveal figure img {
+  max-height: 500px;
+  margin-bottom: 0; }
+
+.reveal figure figcaption {
+  font-size: .7em;
+  text-align: right; }
+
+.reveal mark {
+  background-color: rgba(251, 255, 0, 0.17); }
+
+.reveal .c-overview-list {
+  font-size: 150%;
+  text-align: center;
+  margin: 0;
+  padding: 0; }
+  .reveal .c-overview-list li {
+    list-style: none; }
+  .reveal .c-overview-list .is-active {
+    font-weight: bold;
+    font-size: 150%; }
+
+.reveal .u-txt-larger {
+  font-size: 120%; }
+
+.reveal .u-txt-xl {
+  font-size: 150%; }
+
+.reveal .u-txt-xxl {
+  font-size: 200%; }
+
+.reveal pre code {
+  max-height: 600px !important; }

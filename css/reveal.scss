@@ -1465,3 +1465,52 @@ body {
 .zoomed .reveal .roll span:after {
 	visibility: hidden;
 }
+
+
+.reveal {
+
+	figure {
+		img {
+			max-height: 500px;
+			margin-bottom: 0;
+		}
+		figcaption {
+			font-size: .7em;
+			text-align: right;
+		}
+	}
+
+	mark {
+		background-color: rgba(251, 255, 0, 0.17);
+	}
+
+	.c-overview-list {
+		font-size: 150%;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		li {
+			list-style: none;
+		}
+		.is-active {
+			font-weight: bold;
+			font-size: 150%;
+		}
+	}
+
+	.u-txt-larger {
+		font-size: 120%;
+	}
+	.u-txt-xl {
+		font-size: 150%;
+	}
+	.u-txt-xxl {
+		font-size: 200%;
+	}
+
+	pre code {
+		max-height: 600px !important;
+	}
+}
+
+

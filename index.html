@@ -22,12 +22,829 @@
 		</script>
 	</head>
 	<body>
+
 		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+      <div class="slides">
+        <section>
+          <h1>CSS Architecture</h1>
+          <p>Strategies for writing meaningful, robust, flexible and scalable CSS</p>
+          <p>by Nathan Rambeck @ Sparkbox</p>
+          <p><a href="http://twitter.com/nrambeck">@nrambeck</a></p>
+          <p>http://bit.ly/25Bkrrq</p>
+        </section>
+        <section>
+          <section>
+            <h2>Why CSS Architecture?</h2>
+          </section>
+          <section>
+            <h2>Can't we just style our pages?</h2>
+            <figure class="fragment fade-up">
+              <img src="assets/shack.jpg" alt="Shack">
+              <figcaption><a href="https://unsplash.com/photos/2-KEVc5JRSw">Bradley Swenson</a></figcaption>
+            </figure>
+          </section>
+          <section>
+            <blockquote class="u-txt-xxl">We’re not designing pages, we’re designing systems of components. —<a href="http://bradfrost.com/blog/mobile/bdconf-stephen-hay-presents-responsive-design-workflow/">Stephen Hay</a></blockquote>
+          </section>
+          <section>
+            <h2>Complexity requires planning and organization</h2>
+            <figure class="fragment fade-up">
+              <img src="assets/complex-architecture.jpg" alt="Complex Architecture">
+              <figcaption><a href="https://unsplash.com/photos/zCevd81eJDU">Alexandre Perotto</a></figcaption>
+            </figure>
+          </section>
+          <section>
+            <h2>Scalability Issues</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Scaling number pages/templates</li>
+              <li class="fragment fade-up">Scaling complexity</li>
+              <li class="fragment fade-up">Scaling development team members</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Delivering <em>Systems</em> to our Clients</h1>
+          </section>
+          <section>
+            <blockquote class="u-txt-xxl">Tiny Bootstraps for every client —<a href="http://daverupert.com/2013/04/responsive-deliverables/">Dave Rupert</a></blockquote>
+          </section>
+          <section>
+            <h2>Thinking in terms of modules and components</h2>
+            <figure class="fragment fade-up">
+              <img src="assets/modules-components.jpg" alt="Modules and Components">
+            </figure>
+
+          </section>
+          <section>
+            <h2>Pattern Libraries</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up"><a href="http://fbrctr.github.io/">Fabricator</a></li>
+              <li class="fragment fade-up"><a href="http://patternlab.io/">PatternLab</a></li>
+              <li class="fragment fade-up"><a href="https://www.google.com/design/spec/material-design/introduction.html">Google Material Design</a></li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h2>Where these ideas came from</h2>
+          <ul class="u-txt-larger">
+            <li class="fragment fade-up"><a href="https://www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss/">Object-Oriented CSS</a> (re-usability) - Nicole Sullivan</li>
+            <li class="fragment fade-up"><a href="https://smacss.com">SMACSS</a> (seperation of concerns) - Jonathan Snook</li>
+            <li class="fragment fade-up"><a href="http://www.creativebloq.com/web-design/manage-large-scale-web-projects-new-css-architecture-itcss-41514731">ITCSS</a> (style ordering) - Harry Roberts</li>
+          </ul>
+        </section>
+        <section>
+          <h1>Types of CSS Rules</h1>
+          <ul class="u-txt-larger">
+            <li class="fragment fade-up">Base</li>
+            <li class="fragment fade-up">Objects</li>
+            <li class="fragment fade-up">Components</li>
+            <li class="fragment fade-up">State</li>
+            <li class="fragment fade-up">Javascript</li>
+            <li class="fragment fade-up">Themes</li>
+            <li class="fragment fade-up">Utilities</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li class="is-active">Base</li>
+              <li>Objects</li>
+              <li>Components</li>
+              <li>State</li>
+              <li>Javascript</li>
+              <li>Themes</li>
+              <li>Utilities</li>
+            </ul>
+          </section>
+          <section>
+            <h1>Base CSS</h1>
+            <p>Styles applied globally to bare elements</p>
+          </section>
+          <section>
+            <pre><code class="css" data-noescape>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    color: Orange;
+  }
+  img {
+    max-width: 100%;
+  }
+            </code></pre>
+          </section>
+          <section>
+            <h2>Base CSS Considerations</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Use a project like <a href="https://necolas.github.io/normalize.css/">normalize.css</a></li>
+              <li class="fragment fade-up">These are global defaults</li>
+              <li class="fragment fade-up">Don't be too heavy-handed</li>
+              <li class="fragment fade-up">Setup typography</li>
+              <li class="fragment fade-up">Setup box-sizing model</li>
+            </ul>
+
+          </section>
+        </section>
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li>Base</li>
+              <li class="is-active">Objects</li>
+              <li>Components</li>
+              <li>State</li>
+              <li>Javascript</li>
+              <li>Themes</li>
+              <li>Utilities</li>
+            </ul>
+
+          </section>
+          <section>
+            <h1>What are objects?</h1>
+            <p class="fragment fade-in">Re-usable CSS classes for layout and structure</p>
+          </section>
+          <section>
+            <h2>Recognize layout and structure patterns</h2>
+            <figure class="fragment fade-up">
+              <img src="assets/recognizing-patterns.jpg" alt="Recognizing Patterns">
+            </figure>
+
+          </section>
+          <section data-transition="fade-out">
+            <pre><code class="css" data-noescape>
+  .promo {
+    max-width: 1000px;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+            </code></pre>
+          </section>
+          <section data-transition="fade-in">
+            <pre><code class="css" data-noescape>
+  .o-container-wide {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .promo {
+    height: 300px;
+    padding: 20px;
+  }
+            </code></pre>
+            <pre class="fragment"><code class="html" data-noescape>
+  &lt;div class=&quot;promo o-container-wide&quot;&gt;&lt;/div&gt;
+            </code></pre>
+          </section>
+          <section>
+            <h2>Examples</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Grid systems</li>
+              <li class="fragment fade-up">Layout containers</li>
+              <li class="fragment fade-up">Structural patterns</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li>Base</li>
+              <li>Objects</li>
+              <li class="is-active">Components</li>
+              <li>State</li>
+              <li>Javascript</li>
+              <li>Themes</li>
+              <li>Utilities</li>
+            </ul>
+          </section>
+          <section>
+            <p>Components are discrete, self-contained pieces of UI</p>
+          </section>
+          <section>
+            <h2>Examples</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Buttons</li>
+              <li class="fragment fade-up">Carousels</li>
+              <li class="fragment fade-up">Pullquotes</li>
+              <li class="fragment fade-up">Header</li>
+              <li class="fragment fade-up">Navigation</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Components make up the bulk of your CSS rules</h2>
+          </section>
+          <section>
+            <h2>Independent and self-contained</h2>
+            <p class="fragment fade-in">You should be able to drop a component anywhere on any page and it will maintain it's structure and design.</p>
+          </section>
+          <section>
+            <h2>Components can be small</h2>
+          </section>
+          <section>
+            <pre><code class="html" data-noescape>
+  &lt;button class=&quot;btn&quot;&gt;My Button&lt;/button&gt;
+            </code></pre>
+          </section>
+          <section>
+            <h2>Components can be big</h2>
+          </section>
+          <section data-transition="fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;c-footer&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;c-footer__logo icon-a-assist&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;<mark>c-footer</mark>&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;<mark>c-footer__logo</mark> icon-a-assist&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;<mark>c-footer__credit</mark>&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+          </section>
+
+        </section>
+        <section>
+          <section>
+            <h1>Naming Components</h1>
+          </section>
+          <section>
+            <h2>BEM</h2>
+            <h3>(Block, Element, Modifier)</h3>
+            <p><a href="http://getbem.com/introduction/">http://getbem.com/</a></p>
+          </section>
+          <section>
+            <h2>[block]__[element]--[modifier]</h2>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;div class=&quot;alert alert--warning&quot;&gt;
+    &lt;h1 class=&quot;alert__title&quot;&gt;
+      &lt;span class=&quot;alert__icon&quot;&gt;&lt;/span&gt;
+      Alert Title
+    &lt;/h1&gt;
+    &lt;p class=&quot;alert__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+  &lt;/div&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;div class=&quot;<mark>alert</mark> <mark>alert</mark>--warning&quot;&gt;
+    &lt;h1 class=&quot;<mark>alert</mark>__title&quot;&gt;
+      &lt;span class=&quot;<mark>alert</mark>__icon icon-warning&quot;&gt;&lt;/span&gt;
+      Alert Title
+    &lt;/h1&gt;
+    &lt;p class=&quot;<mark>alert</mark>__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+  &lt;/div&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;div class=&quot;alert alert--warning&quot;&gt;
+    &lt;h1 class=&quot;alert__<mark>title</mark>&quot;&gt;
+      &lt;span class=&quot;alert__<mark>icon</mark> icon-warning&quot;&gt;&lt;/span&gt;
+      Alert Title
+    &lt;/h1&gt;
+    &lt;p class=&quot;alert__<mark>description</mark>&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+  &lt;/div&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;div class=&quot;alert alert--<mark>warning</mark>&quot;&gt;
+    &lt;h1 class=&quot;alert__title&quot;&gt;
+      &lt;span class=&quot;alert__icon icon-warning&quot;&gt;&lt;/span&gt;
+      Alert Title
+    &lt;/h1&gt;
+    &lt;p class=&quot;alert__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+  &lt;/div&gt;
+            </code></pre>
+          </section>
+          <section>
+            <h2>Why?</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Readability</li>
+              <li class="fragment fade-up">Self-descriptive</li>
+              <li class="fragment fade-up">Specificity</li>
+            </ul>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <h2>Specificity Problems</h2>
+            <pre><code class="html" data-noescape>
+  &lt;div class=&quot;alert&quot;&gt;
+    &lt;h1&gt;
+      &lt;span class=&quot;icon-warning&quot;&gt;&lt;/span&gt;
+      Alert Title
+    &lt;/h1&gt;
+    &lt;p&gt;The password you entered is invalid.&lt;/p&gt;
+  &lt;/div&gt;
+            </code></pre>
+            <pre><code class="css" data-noescape>
+  .alert { }
+  .alert h1 { }
+  .alert span { }
+  .alert p { }
+            </code></pre>
+          </section>
+
+        </section>
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li>Base</li>
+              <li>Objects</li>
+              <li>Components</li>
+              <li class="is-active">State</li>
+              <li>Javascript</li>
+              <li>Themes</li>
+              <li>Utilities</li>
+            </ul>
+          </section>
+          <section>
+            <p>State classes are helpers that modify the state of a component.</p>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li class=&quot;nav__item&quot;&gt;Home&lt;/li&gt;
+    &lt;li class=&quot;nav__item&quot;&gt;About&lt;/li&gt;
+    &lt;li class=&quot;nav__item&quot;&gt;Contact&lt;/li&gt;
+  &lt;/ul&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li class=&quot;nav__item&quot;&gt;Home&lt;/li&gt;
+    &lt;li class=&quot;nav__item <mark>is-active</mark>&quot;&gt;About&lt;/li&gt;
+    &lt;li class=&quot;nav__item&quot;&gt;Contact&lt;/li&gt;
+  &lt;/ul&gt;
+            </code></pre>
+          </section>
+          <section data-transition="fade-in fade-out">
+            <pre><code class="css" data-noescape>
+  .nav__item {
+    display: inline-block;
+    padding: .5em;
+  }
+  .nav__item.is-active {
+    font-weight: bold;
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <p>It's common to add remove state classes with Javascript.</p>
+          </section>
+
+          <section>
+            <p>State classes begin with "is" or "has"</p>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">.is-active</li>
+              <li class="fragment fade-up">.is-hidden</li>
+              <li class="fragment fade-up">.is-selected</li>
+              <li class="fragment fade-up">.has-focus</li>
+            </ul>
+
+          </section>
+
+        </section>
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li>Base</li>
+              <li>Objects</li>
+              <li>Components</li>
+              <li>State</li>
+              <li>Javascript</li>
+              <li class="is-active">Themes</li>
+              <li>Utilities</li>
+            </ul>
+          </section>
+          <section>
+            <p>Theme classes alter components with unique colors, fonts or other decorations</p>
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;blockquote class=&quot;c-pullquote <mark>t-light</mark>&quot;&gt;
+    &lt;p&gt;A great quote from someone special.&lt;/p&gt;
+  &lt;/blockquote&gt;
+            </code></pre>
+            <pre class="fragment"><code class="css" data-noescape>
+  .c-pullquote {
+    font-size: 2em;
+    font-style: italic;
+  }
+  .t-light {
+    background-color: Cream;
+    color: Magenta;
+  }
+  .t-dark {
+    background-color: Magenta;
+    color: Cream;
+  }
+            </code></pre>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <ul class="c-overview-list">
+              <li>Base</li>
+              <li>Objects</li>
+              <li>Components</li>
+              <li>State</li>
+              <li>Javascript</li>
+              <li>Themes</li>
+              <li class="is-active">Utilities</li>
+            </ul>
+          </section>
+
+          <section>
+            <p>Utility classes are single purpose helpers that apply one specific styling rule.</p>
+          </section>
+
+          <section>
+            <h2>Examples of Utilities</h2>
+
+            <pre class="fragment"><code class="css" data-noescape>
+  .u-sp {
+    margin-bottom: 1em !important;
+  }
+  .u-clearfix:after {
+    content: " ";
+    display: block; clear: both; visibility: hidden;
+    height: 0; font-size: 0;
+  }
+  .u-txt-center {
+    text-align: center !important;
+  }
+  .u-txt-larger {
+    font-size: 130% !important;
+  }
+            </code></pre>
+            <pre class="fragment"><code class="html" data-noescape>
+  &lt;div class=&quot;promo <mark>u-sp</mark>&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;promo <mark>u-sp</mark>&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;promo&quot;&gt;&lt;/div&gt;
+            </code></pre>
+
+          </section>
+
+          <section>
+            <div class="u-txt-larger">
+              <p>Tweak your layout</p>
+              <p>or</p>
+              <p>slightly modify a component...</p>
+              <p>without creating another variant</p>
+            </div>
+          </section>
+
+          <section>
+            <h2>Don't Overdo It!</h2>
+            <pre class="fragment"><code class="html" data-noescape>
+  &lt;div class=&quot;
+    border-top-width-1-dot-04em
+    border-top-style-dotted
+    border-top-color-lightgrey
+    border-bottom-width-12px
+    border-bottom-style-solid
+    border-bottom-color-cornflowerblue
+    border-top-right-radius-1-dot-60em
+    padding-5px
+    margin-left-10px
+    background-color-fuchsia
+  &quot;&gt;
+  &lt;/div&gt;
+            </code></pre>
+            <p class="fragment">from <a href="https://github.com/marmelab/universal.css">universal.css</a> a parody of
+              <a href="http://acss.io/">Atomic CSS</a></p>
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Naming Your Classes</h1>
+          </section>
+
+          <section>
+            <h2>Naming Things is Hard</h2>
+
+            <p>see <a href="https://seesparkbox.com/foundry/naming_css_stuff_is_really_hard">Sparkbox Foundry post</a></p>
+
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">All lowercase</li>
+              <li class="fragment fade-up">Use dashes or underscores</li>
+              <li class="fragment fade-up">Long enough to discern (.pullquote not .pq)</li>
+              <li class="fragment fade-up">No longer than needs to be (.btn not .button)</li>
+            </ul>
+
+          </section>
+
+          <section>
+            <h2>Naming Methodologies</h2>
+
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">By Presentation</li>
+              <li class="fragment fade-up">By Content</li>
+              <li class="fragment fade-up">By Function</li>
+            </ul>
+
+          </section>
+
+          <section>
+            <h3>By Presentation</h3>
+
+            <pre><code class="css" data-noescape>
+  .button--green { }
+  .rounded-image { }
+  .large-heading { }
+            </code></pre>
+
+            <h3>By Content</h3>
+
+            <pre><code class="css" data-noescape>
+  .button--submit { }
+  .profile-image { }
+  .article-heading { }
+            </code></pre>
+
+            <h3>By Function</h3>
+
+            <pre><code class="css" data-noescape>
+  .button--primary { }
+  .decorative-image { }
+  .content-heading { }
+            </code></pre>
+
+          </section>
+
+          <section>
+            <h2>Namespacing</h2>
+
+            <p>Add prefixes to all of your classes to recognize the purpose of each one.</p>
+
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Objects: .o-</li>
+              <li class="fragment fade-up">Components: .c-</li>
+              <li class="fragment fade-up">State: .is- or .has-</li>
+              <li class="fragment fade-up">Theme: .t-</li>
+              <li class="fragment fade-up">Utility: .u-</li>
+            </ul>
+
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;c-footer&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;c-footer&quot;&gt;
+    &lt;div class=&quot;<mark>o-container-wide</mark>&quot;&gt;
+      &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;<mark>c-footer</mark>&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;<mark>c-social</mark> c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;c-footer&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item <mark>is-active</mark>&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+
+          </section>
+
+          <section data-transition="fade-in fade-out">
+            <pre><code class="html" data-noescape>
+  &lt;footer class=&quot;c-footer&quot;&gt;
+    &lt;div class=&quot;o-container-wide&quot;&gt;
+      &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+      &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+        &lt;div class=&quot;c-social__label <mark>u-txt-center</mark>&quot;&gt;Join the conversation&lt;/div&gt;
+        &lt;ul class=&quot;c-social__list&quot;&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+            </code></pre>
+
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h1>Code Organization</h1>
+          </section>
+
+          <section>
+            <h2>Use a preprocessor to take advantage of:</h2>
+            <ul class="u-txt-larger">
+              <li class="fragment fade-up">Imports</li>
+              <li class="fragment fade-up">Variables</li>
+              <li class="fragment fade-up">Functions</li>
+              <li class="fragment fade-up">Mixins</li>
+              <li class="fragment fade-up">Nesting</li>
+            </ul>
+
+          </section>
+          <section>
+            <h2>Divide styles into meaningful files</h2>
+
+            <pre><code class="css" data-noescape>
+  @import "variables";
+  @import "mixins";
+  @import "normalize";
+  @import "typography";
+  @import "headings";
+  @import "headings";
+  @import "layout";
+  @import "carousel";
+            </code></pre>
+
+          </section>
+
+          <section>
+            <h2>Prefix your variable names</h2>
+
+            <pre><code class="scss" data-noescape>
+  // Colors
+  $c-warning: Red;
+  $c-primary: Blue;
+  $c-background: White;
+            </code></pre>
+
+            <figure class="fragment fade-up">
+              <img src="assets/color-autocompletion.jpg" alt="Variable Autocompletion">
+            </figure>
+
+          </section>
+
+          <section>
+            <h2>Scope your variables</h2>
+
+            <pre><code class="scss" data-noescape>
+  .alert {
+    $background-color: Red;
+    $foreground-color: Cream;
+    background-color: $background-color;
+    color: $foreground-color;
+  }
+            </code></pre>
+
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Source Ordering</h1>
+            <h3>The Inverted Triangle Method</h3>
+          </section>
+
+          <section>
+            <p>ITCSS is a method of ordering your CSS settings and rules to prevent
+            namespace collisions, specificity wrestling, leaky styles and inadvertent
+            regressions.</p>
+          </section>
+
+          <section>
+            <figure>
+              <img src="assets/itcss1.jpg" alt="ITCSS Illustration 1">
+            </figure>
+
+          </section>
+
+          <section>
+            <figure>
+              <img src="assets/itcss2.jpg" alt="ITCSS Illustration 2">
+            </figure>
+
+          </section>
+
+          <section>
+            <pre><code class="scss" data-noescape>
+  @import "settings.global";
+  @import "settings.colors";
+  @import "tools.functions";
+  @import "tools.mixins";
+  @import "generic.box-sizing";
+  @import "generic.normalize";
+  @import "elements.headings";
+  @import "elements.links";
+  @import "objects.wrappers";
+  @import "objects.grid";
+  @import "components.nav";
+  @import "components.buttons";
+  @import "components.promos";
+  @import "trumps.utilities";
+  @import "trumps.ie8";
+            </code></pre>
+
+          </section>
+
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+
+          <p>Twitter: <a href="https://twitter.com/nrambeck">@nrambeck</a></p>
+        </section>
+
+      </div>
+    </div>
+
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
