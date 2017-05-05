@@ -60,14 +60,14 @@
             <h2>Scalability Issues</h2>
             <ul class="u-txt-larger">
               <li class="fragment fade-up">Scaling number of pages/templates</li>
-              <li class="fragment fade-up">Scaling complexity</li>
-              <li class="fragment fade-up">Scaling development team members</li>
+              <li class="fragment fade-up">Scaling complexity (responsive)</li>
+              <li class="fragment fade-up">Scaling dev team</li>
             </ul>
           </section>
         </section>
         <section>
           <section>
-            <h1>Delivering <em>Systems</em> to our Clients</h1>
+            <h1>Building Design <em>Systems</em></h1>
           </section>
           <section>
             <blockquote class="u-txt-xxl">Tiny Bootstraps for every client —<a href="http://daverupert.com/2013/04/responsive-deliverables/">Dave Rupert</a></blockquote>
@@ -357,7 +357,7 @@
           <section data-transition="fade-in fade-out">
             <h2>Specificity Problems</h2>
             <pre><code class="html" data-noescape>
-  &lt;div class=&quot;alert&quot;&gt;
+  &lt;div class=&quot;alert warning&quot;&gt;
     &lt;h1&gt;
       &lt;span class=&quot;icon-warning&quot;&gt;&lt;/span&gt;
       Alert Title
@@ -367,6 +367,7 @@
             </code></pre>
             <pre><code class="css" data-noescape>
   .alert { }
+  .alert.warning { }
   .alert h1 { }
   .alert span { }
   .alert p { }
@@ -731,7 +732,7 @@
           </section>
 
           <section>
-            <h2>Use a preprocessor to take advantage of:</h2>
+            <h2>Use a preprocessor (Sass, Less, Stylus) to take advantage of:</h2>
             <ul class="u-txt-larger">
               <li class="fragment fade-up">Imports</li>
               <li class="fragment fade-up">Variables</li>
