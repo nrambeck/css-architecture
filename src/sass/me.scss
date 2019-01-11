@@ -1,0 +1,114 @@
+// Default mixins and settings -----------------
+@import "../../node_modules/reveal.js/css/theme/template/mixins";
+@import "../../node_modules/reveal.js/css/theme/template/settings";
+// ---------------------------------------------
+
+$font-avenir: "Avenir Next", "Helvetica Neue", Helvetica, sans-serif;
+$font-gotham: "Gotham A", "Gotham B", Gotham, "Avenir Next", "Helvetica Neue", sans-serif;
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #222;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 2em;
+$mainFont: $font-gotham;
+$headingFont: $font-gotham;
+$headingTextShadow: none;
+$headingLetterSpacing: 0.05em;
+$headingTextTransform: none;
+$headingFontWeight: 700;
+$linkColor: #73c5d3;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 80px;
+$heading2Size: 65px;
+$heading3Size: 50px;
+$heading4Size: 40px;
+
+
+section.has-light-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #1C4B54;
+  }
+}
+
+section.has-dark-background {
+  &, h1, h2, h3, h4, h5, h6 {
+    color: #b2edef;
+  }
+}
+
+// Theme template ------------------------------
+@import "../../node_modules/reveal.js/css/theme/template/theme";
+// ---------------------------------------------
+
+.reveal {
+  section {
+    img {
+      border: none;
+      background: none;
+      box-shadow: none;
+    }
+
+    figure {
+      img {
+        max-height: 500px;
+        margin-bottom: 0;
+      }
+      figcaption {
+        font-size: .7em;
+        text-align: right;
+      }
+    }
+
+    mark {
+      background-color: rgba(251, 255, 0, 0.17);
+    }
+
+    ul {
+      li {
+        font-size: 1em;
+      }
+    }
+
+    .c-overview-list {
+      font-size: 150%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+      }
+      .is-active {
+        font-weight: bold;
+        font-size: 150%;
+      }
+    }
+
+    .u-txt-larger {
+      font-size: 120%;
+    }
+    .u-txt-xl {
+      font-size: 150%;
+    }
+    .u-txt-xxl {
+      font-size: 200%;
+    }
+
+    pre {
+      font-size: 1em;
+      code {
+        max-height: 600px !important;
+        padding: 0 1em 1em;
+      }
+    }
+  }
+  .slide-number {
+    font-size: 0.8em;
+    padding: 0.7em 0.8em 0.5em;
+    border-radius: 0.3em;
+  }
+}

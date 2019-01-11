@@ -1,44 +1,33 @@
 {
-  "name": "reveal.js",
-  "version": "3.5.0",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
-  "subdomain": "revealjs",
+  "name": "css-architecture",
+  "version": "2.0.0",
+  "description": "CSS Architecture talk",
+  "homepage": "https://nrambeck.github.io/css-architecture",
   "main": "js/reveal.js",
   "scripts": {
-    "test": "grunt test",
-    "start": "grunt serve",
-    "build": "grunt"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "reveal-md slides.md",
+    "dev": "parallelshell \"npm run dev-reveal\" \"npm run dev-sass\"",
+    "dev-reveal": "reveal-md slides.md -w --css me.css",
+    "dev-sass": "node-sass -w src/sass/me.scss me.css",
+    "build": "npm run sass && reveal-md slides.md --static docs --css me.css --static-dirs=assets",
+    "sass": "node-sass src/sass/me.scss me.css"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "name": "Nathan Rambeck",
+    "email": "nrambeck@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git://github.com/nrambeck/css-architecture.git"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "devDependencies": {
-    "express": "~4.14.0",
-    "grunt": "~1.0.1",
-    "grunt-autoprefixer": "~3.0.3",
-    "grunt-cli": "~1.2.0",
-    "grunt-contrib-connect": "~0.11.2",
-    "grunt-contrib-cssmin": "~0.14.0",
-    "grunt-contrib-jshint": "~0.11.3",
-    "grunt-contrib-qunit": "~1.2.0",
-    "grunt-contrib-uglify": "~0.9.2",
-    "grunt-contrib-watch": "~1.0.0",
-    "grunt-sass": "~1.2.0",
-    "grunt-retire": "~0.3.10",
-    "grunt-zip": "~0.17.1",
-    "mustache": "~2.2.1",
-    "node-sass": "~3.13.0",
-    "socket.io": "^1.4.8"
+    "node-sass": "^4.11.0",
+    "parallelshell": "^3.0.2",
+    "reveal-md": "^2.4.1"
   },
   "license": "MIT"
 }
