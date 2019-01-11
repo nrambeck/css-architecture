@@ -13,18 +13,18 @@ revealOptions:
 
 ![Twitter](assets/Twitter_Logo_Blue.svg) <!-- .element style="height: 50px; vertical-align: -60%; margin-right: 0.3em;" --> [@nrambeck](http://twitter.com/nrambeck)
 ---
-<img src="/assets/family.jpg" alt="Rambeck Family">
+<img src="assets/family.jpg" alt="Rambeck Family">
 ---
-<img src="/assets/sparkbox-lunch.jpg" alt="Sparkbox Lunch">
+<img src="assets/sparkbox-lunch.jpg" alt="Sparkbox Lunch">
 ---
-<img src="/assets/better-web-tshirt.jpg" alt="Better Web Shirt">
+<img src="assets/better-web-tshirt.jpg" alt="Better Web Shirt">
 ---
 # Why CSS Architecture?
 ---
 ## Can't we just style our pages?
 
 <figure class="fragment fade-up">
-  <img src="/assets/shack.jpg" alt="Shack">
+  <img src="assets/shack.jpg" alt="Shack">
   <figcaption><a href="https://unsplash.com/photos/2-KEVc5JRSw">Bradley Swenson</a></figcaption>
 </figure>
 ---
