@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Sustainable Styles</title>
+        <link rel="stylesheet" href="./css/reveal.css">
+        <link rel="stylesheet" href="./css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="./css/highlight/zenburn.css">
+        <link rel="stylesheet" href="./css/print/paper.css" type="text/css" media="print">
+          <link rel="stylesheet" href="./_assets/me.css">
+
+
+    </head>
+    <body>
+
+        <div class="reveal">
+            <div class="slides"><section  data-markdown><script type="text/template">
+<!-- .slide: class="slide-home" -->
+# Sustainable Styles
+<hr>
+### Fundamental Principles of CSS Architecture
+<hr>
+#### by Nathan Rambeck
+
+![Twitter](data:image/svg+xml;base64,PHN2ZyBpZD0iTG9nb19GSVhFRCIgZGF0YS1uYW1lPSJMb2dvIOKAlCBGSVhFRCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7fS5jbHMtMntmaWxsOiMxZGExZjI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Ud2l0dGVyX0xvZ29fQmx1ZTwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1My42MiwzMDEuNTljOTQuMzQsMCwxNDUuOTQtNzguMTYsMTQ1Ljk0LTE0NS45NCwwLTIuMjIsMC00LjQzLS4xNS02LjYzQTEwNC4zNiwxMDQuMzYsMCwwLDAsMzI1LDEyMi40N2ExMDIuMzgsMTAyLjM4LDAsMCwxLTI5LjQ2LDguMDcsNTEuNDcsNTEuNDcsMCwwLDAsMjIuNTUtMjguMzcsMTAyLjc5LDEwMi43OSwwLDAsMS0zMi41NywxMi40NSw1MS4zNCw1MS4zNCwwLDAsMC04Ny40MSw0Ni43OEExNDUuNjIsMTQ1LjYyLDAsMCwxLDkyLjQsMTA3LjgxYTUxLjMzLDUxLjMzLDAsMCwwLDE1Ljg4LDY4LjQ3QTUwLjkxLDUwLjkxLDAsMCwxLDg1LDE2OS44NmMwLC4yMSwwLC40MywwLC42NWE1MS4zMSw1MS4zMSwwLDAsMCw0MS4xNSw1MC4yOCw1MS4yMSw1MS4yMSwwLDAsMS0yMy4xNi44OCw1MS4zNSw1MS4zNSwwLDAsMCw0Ny45MiwzNS42MiwxMDIuOTIsMTAyLjkyLDAsMCwxLTYzLjcsMjJBMTA0LjQxLDEwNC40MSwwLDAsMSw3NSwyNzguNTVhMTQ1LjIxLDE0NS4yMSwwLDAsMCw3OC42MiwyMyIvPjwvc3ZnPgo=) <!-- .element style="height: 50px; vertical-align: -60%; margin-right: 0.3em;" --> [@nrambeck](http://twitter.com/nrambeck)</script></section><section  data-markdown><script type="text/template"><img src="/assets/family.jpg" alt="Rambeck Family"></script></section><section  data-markdown><script type="text/template"><img src="/assets/sparkbox-lunch.jpg" alt="Sparkbox Lunch"></script></section><section  data-markdown><script type="text/template"><img src="/assets/better-web-tshirt.jpg" alt="Better Web Shirt"></script></section><section  data-markdown><script type="text/template"># Why CSS Architecture?</script></section><section  data-markdown><script type="text/template">## Can't we just style our pages?
+
+<figure class="fragment fade-up">
+  <img src="/assets/shack.jpg" alt="Shack">
+  <figcaption><a href="https://unsplash.com/photos/2-KEVc5JRSw">Bradley Swenson</a></figcaption>
+</figure></script></section><section  data-markdown><script type="text/template"><blockquote class="u-txt-xxl">
+  We're not designing pages, we're designing systems of components. 
+  —<a href="http://bradfrost.com/blog/mobile/bdconf-stephen-hay-presents-responsive-design-workflow/">Stephen Hay</a>
+</blockquote></script></section><section  data-markdown><script type="text/template">## Complexity requires planning and organization
+
+<figure class="fragment fade-up">
+  <img src="assets/complex-architecture.jpg" alt="Complex Architecture">
+  <figcaption><a href="https://unsplash.com/photos/zCevd81eJDU">Alexandre Perotto</a></figcaption>
+</figure></script></section><section  data-markdown><script type="text/template">## Scalability Issues
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Scaling number of pages/templates</li>
+  <li class="fragment fade-up">Scaling complexity (responsive)</li>
+  <li class="fragment fade-up">Scaling dev team</li>
+</ul></script></section><section  data-markdown><script type="text/template"># Building Design Systems
+
+<blockquote class="u-txt-xxl">
+  Tiny Bootstraps for every client<br>
+  —<a href="http://daverupert.com/2013/04/responsive-deliverables/">Dave Rupert</a>
+</blockquote></script></section><section  data-markdown><script type="text/template">## Thinking in terms of modules and components
+
+<figure class="fragment fade-up">
+  <img src="assets/modules-components.jpg" alt="Modules and Components">
+</figure></script></section><section  data-markdown><script type="text/template">## Pattern Libraries
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up"><a href="https://github.com/cloudfour/drizzle">Drizzle</a></li>
+  <li class="fragment fade-up"><a href="http://fbrctr.github.io/">Fabricator</a></li>
+  <li class="fragment fade-up"><a href="http://patternlab.io/">PatternLab</a></li>
+  <li class="fragment fade-up"><a href="https://storybook.js.org">React Storybook</a></li>
+</ul></script></section><section  data-markdown><script type="text/template">## Where these ideas came from
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up"><a href="https://www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss/">Object-Oriented CSS</a> (re-usability) - Nicole Sullivan</li>
+  <li class="fragment fade-up"><a href="https://smacss.com">SMACSS</a> (seperation of concerns) - Jonathan Snook</li>
+  <li class="fragment fade-up"><a href="http://www.creativebloq.com/web-design/manage-large-scale-web-projects-new-css-architecture-itcss-41514731">ITCSS</a> (style ordering) - Harry Roberts</li>
+</ul></script></section><section  data-markdown><script type="text/template"># Types of CSS Rules
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Base</li>
+  <li class="fragment fade-up">Objects</li>
+  <li class="fragment fade-up">Components</li>
+  <li class="fragment fade-up">State</li>
+  <li class="fragment fade-up">Javascript</li>
+  <li class="fragment fade-up">Themes</li>
+  <li class="fragment fade-up">Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template"><ul class="c-overview-list">
+  <li class="is-active">Base</li>
+  <li>Objects</li>
+  <li>Components</li>
+  <li>State</li>
+  <li>Javascript</li>
+  <li>Themes</li>
+  <li>Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template"># Base CSS
+
+### Styles applied globally to bare elements</script></section><section  data-markdown><script type="text/template"><pre><code class="css" data-noescape>
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: Orange;
+}
+img {
+  max-width: 100%;
+}
+</code></pre></script></section><section  data-markdown><script type="text/template">## Base CSS Considerations
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Use a project like <a href="https://necolas.github.io/normalize.css/">normalize.css</a></li>
+  <li class="fragment fade-up">These are global defaults</li>
+  <li class="fragment fade-up">Don't be too heavy-handed</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template">
+<ul class="c-overview-list">
+  <li>Base</li>
+  <li class="is-active">Objects</li>
+  <li>Components</li>
+  <li>State</li>
+  <li>Javascript</li>
+  <li>Themes</li>
+  <li>Utilities</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template"># What are objects?
+
+### Re-usable CSS classes for layout and structure <!-- .element: class="fragment fade-in" --></script></section><section  data-markdown><script type="text/template">## Recognize layout and structure patterns
+<figure class="fragment fade-up">
+  <img src="assets/recognizing-patterns.jpg" alt="Recognizing Patterns">
+</figure></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-out" -->
+<pre><code class="css" data-noescape>
+.promo {
+  max-width: 1000px;
+  height: 300px;
+  padding: 20px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in" -->
+<pre><code class="css" data-noescape>
+.o-container-wide {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.promo {
+  height: 300px;
+  padding: 20px;
+}
+</code></pre>
+
+<pre class="fragment"><code class="html" data-noescape>
+&lt;div class=&quot;promo o-container-wide&quot;&gt;&lt;/div&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template">## Examples
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Grid systems</li>
+  <li class="fragment fade-up">Layout containers</li>
+  <li class="fragment fade-up">Structural patterns</li>
+</ul></script></section><section  data-markdown><script type="text/template"><ul class="c-overview-list">
+  <li>Base</li>
+  <li>Objects</li>
+  <li class="is-active">Components</li>
+  <li>State</li>
+  <li>Javascript</li>
+  <li>Themes</li>
+  <li>Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template">## Components are discrete, self-contained pieces of UI</script></section><section  data-markdown><script type="text/template">## Examples
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Buttons</li>
+  <li class="fragment fade-up">Carousels</li>
+  <li class="fragment fade-up">Pullquotes</li>
+  <li class="fragment fade-up">Header</li>
+  <li class="fragment fade-up">Navigation</li>
+</ul></script></section><section  data-markdown><script type="text/template">## Components make up the bulk of your CSS rules</script></section><section  data-markdown><script type="text/template">## Independent and self-contained
+
+#### You should be able to drop a component anywhere on any page and it will maintain it's structure and design. <!-- .element: class="fragment fade-in" --></script></section><section  data-markdown><script type="text/template">## Components can be small</script></section><section  data-markdown><script type="text/template"><pre><code class="html" data-noescape>
+&lt;button class=&quot;btn&quot;&gt;My Button&lt;/button&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template">## Components can be big</script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-out" -->
+
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;c-footer&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;c-footer__logo icon-a-assist&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;<mark>c-footer</mark>&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;<mark>c-footer__logo</mark> icon-a-assist&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;<mark>c-footer__credit</mark>&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"># Naming Components</script></section><section  data-markdown><script type="text/template">## BEM
+
+### (Block, Element, Modifier)
+
+#### [http://getbem.com/](http://getbem.com/introduction/)</script></section><section  data-markdown><script type="text/template">### [block]__[element]--[modifier]</script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+
+<pre><code class="html" data-noescape>
+&lt;div class=&quot;alert alert--warning&quot;&gt;
+  &lt;h1 class=&quot;alert__title&quot;&gt;
+  &lt;span class=&quot;alert__icon icon-warning&quot;&gt;&lt;/span&gt;
+    Alert Title
+  &lt;/h1&gt;
+  &lt;p class=&quot;alert__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;div class=&quot;<mark>alert</mark> <mark>alert</mark>--warning&quot;&gt;
+  &lt;h1 class=&quot;<mark>alert</mark>__title&quot;&gt;
+  &lt;span class=&quot;<mark>alert</mark>__icon icon-warning&quot;&gt;&lt;/span&gt;
+    Alert Title
+  &lt;/h1&gt;
+  &lt;p class=&quot;<mark>alert</mark>__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;div class=&quot;alert alert--warning&quot;&gt;
+  &lt;h1 class=&quot;alert__<mark>title</mark>&quot;&gt;
+  &lt;span class=&quot;alert__<mark>icon</mark> icon-warning&quot;&gt;&lt;/span&gt;
+    Alert Title
+  &lt;/h1&gt;
+  &lt;p class=&quot;alert__<mark>description</mark>&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;div class=&quot;alert alert--<mark>warning</mark>&quot;&gt;
+  &lt;h1 class=&quot;alert__title&quot;&gt;
+  &lt;span class=&quot;alert__icon icon-warning&quot;&gt;&lt;/span&gt;
+    Alert Title
+  &lt;/h1&gt;
+  &lt;p class=&quot;alert__description&quot;&gt;The password you entered is invalid.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template">## Why?
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Readability</li>
+  <li class="fragment fade-up">Self-descriptive</li>
+  <li class="fragment fade-up">Specificity</li>
+</ul></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+## Specificity Problems
+
+<pre><code class="html" data-noescape>
+&lt;div class=&quot;alert warning&quot;&gt;
+  &lt;h1&gt;
+    &lt;span class=&quot;icon-warning&quot;&gt;&lt;/span&gt;
+    Alert Title
+  &lt;/h1&gt;
+  &lt;p&gt;The password you entered is invalid.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<pre><code class="css" data-noescape>
+.alert { }
+.alert.warning { }
+.alert h1 { }
+.alert span { }
+.alert p { }
+</code></pre>
+</script></section><section  data-markdown><script type="text/template"><ul class="c-overview-list">
+  <li>Base</li>
+  <li>Objects</li>
+  <li>Components</li>
+  <li class="is-active">State</li>
+  <li>Javascript</li>
+  <li>Themes</li>
+  <li>Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template">### State classes are helpers that modify the state of a component.</script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;Home&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;About&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;Contact&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;Home&lt;/li&gt;
+  &lt;li class=&quot;nav__item <mark>is-active</mark>&quot;&gt;About&lt;/li&gt;
+  &lt;li class=&quot;nav__item&quot;&gt;Contact&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="css" data-noescape>
+.nav__item {
+  display: inline-block;
+  padding: .5em;
+}
+.nav__item<mark>.is-active</mark> {
+  font-weight: bold;
+}
+</code></pre></script></section><section  data-markdown><script type="text/template">### It's common to add remove state classes with Javascript.</script></section><section  data-markdown><script type="text/template">### State classes begin with "is" or "has"
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">.is-active</li>
+  <li class="fragment fade-up">.is-hidden</li>
+  <li class="fragment fade-up">.is-selected</li>
+  <li class="fragment fade-up">.has-focus</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template"><ul class="c-overview-list">
+  <li>Base</li>
+  <li>Objects</li>
+  <li>Components</li>
+  <li>State</li>
+  <li>Javascript</li>
+  <li class="is-active">Themes</li>
+  <li>Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template">## Theme Classes
+
+### Alter components with unique colors, fonts or other decorations</script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;blockquote class=&quot;c-pullquote <mark>t-light</mark>&quot;&gt;
+  &lt;p&gt;A great quote from someone special.&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre>
+
+<pre class="fragment"><code class="css" data-noescape>
+.c-pullquote {
+  font-size: 2em;
+  font-style: italic;
+}
+.t-light {
+  background-color: cream;
+  color: magenta;
+}
+.t-dark {
+  background-color: magenta;
+  color: cream;
+}
+</code></pre></script></section><section  data-markdown><script type="text/template"><ul class="c-overview-list">
+  <li>Base</li>
+  <li>Objects</li>
+  <li>Components</li>
+  <li>State</li>
+  <li>Javascript</li>
+  <li>Themes</li>
+  <li class="is-active">Utilities</li>
+</ul></script></section><section  data-markdown><script type="text/template">## Utilities
+
+### Single purpose helpers that apply one specific styling rule</script></section><section  data-markdown><script type="text/template">## Examples of Utilities
+
+<pre class="fragment"><code class="css" data-noescape>
+.u-sp {
+  margin-bottom: 1em !important;
+}
+.u-clearfix:after {
+  content: " ";
+  display: block; clear: both; visibility: hidden;
+  height: 0; font-size: 0;
+}
+.u-txt-center {
+  text-align: center !important;
+}
+</code></pre>
+
+<pre class="fragment"><code class="html" data-noescape>
+&lt;div class=&quot;promo <mark>u-sp</mark>&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;promo <mark>u-sp</mark>&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;promo&quot;&gt;&lt;/div&gt;
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">### Tweak your layout
+
+### or
+
+### slightly modify a component...
+
+### without creating another variant
+</script></section><section  data-markdown><script type="text/template">## Don't Overdo It!
+
+<pre class="fragment"><code class="html" data-noescape>
+&lt;div class=&quot;
+  border-top-width-1-dot-04em
+  border-top-style-dotted
+  border-top-color-lightgrey
+  border-bottom-width-12px
+  border-bottom-style-solid
+  border-bottom-color-cornflowerblue
+  border-top-right-radius-1-dot-60em
+  padding-5px
+  margin-left-10px
+  background-color-fuchsia
+&quot;&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p class="fragment">from <a href="https://github.com/marmelab/universal.css">universal.css</a> a parody of
+<a href="http://acss.io/">Atomic CSS</a></p>
+</script></section><section  data-markdown><script type="text/template">## Naming Your Classes</script></section><section  data-markdown><script type="text/template">## Naming Things is Hard
+
+see [Sparkbox Foundry post](https://seesparkbox.com/foundry/naming_css_stuff_is_really_hard)
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">All lowercase</li>
+  <li class="fragment fade-up">Use dashes or underscores</li>
+  <li class="fragment fade-up">Long enough to discern (`.pullquote` not `.pq`)</li>
+  <li class="fragment fade-up">No longer than needs to be (`.btn` not `.button`)</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template">## Naming Methodologies
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">By Presentation</li>
+  <li class="fragment fade-up">By Content</li>
+  <li class="fragment fade-up">By Function</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template">#### By Presentation
+
+<pre><code class="css" data-noescape>
+.button--green { }
+.rounded-image { }
+.large-heading { }
+</code></pre>
+
+#### By Content
+
+<pre><code class="css" data-noescape>
+.button--submit { }
+.profile-image { }
+.article-heading { }
+</code></pre>
+
+#### By Function
+
+<pre><code class="css" data-noescape>
+.button--primary { }
+.decorative-image { }
+.content-heading { }
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">## Namespacing
+
+#### Add prefixes to all of your classes to recognize the purpose of each one.
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Objects: `.o-`</li>
+  <li class="fragment fade-up">Components: `.c-`</li>
+  <li class="fragment fade-up">State: `.is-` or `.has-`</li>
+  <li class="fragment fade-up">Theme: `.t-`</li>
+  <li class="fragment fade-up">Utility: `.u-`</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;c-footer&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;c-footer&quot;&gt;
+  &lt;div class=&quot;<mark>o-container-wide</mark>&quot;&gt;
+    &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;<mark>c-footer</mark>&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;<mark>c-social</mark> c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre></script></section><section  data-markdown><script type="text/template">
+<!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;c-footer&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label u-txt-center&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item <mark>is-active</mark>&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: data-transition="fade-in fade-out" -->
+<pre><code class="html" data-noescape>
+&lt;footer class=&quot;c-footer&quot;&gt;
+  &lt;div class=&quot;o-container-wide&quot;&gt;
+    &lt;a class=&quot;c-footer__logo&quot; href=&quot;/&quot;&gt;The Assist&lt;/a&gt;
+    &lt;div class=&quot;c-social c-social--follow&quot;&gt;
+      &lt;div class=&quot;c-social__label <mark>u-txt-center</mark>&quot;&gt;Join the conversation&lt;/div&gt;
+      &lt;ul class=&quot;c-social__list&quot;&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item is-active&quot;&gt;&lt;/li&gt;
+        &lt;li class=&quot;c-social__item&quot;&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;c-footer__credit&quot;&gt;&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+</script></section><section  data-markdown><script type="text/template"># Code Organization</script></section><section  data-markdown><script type="text/template">#### Use a preprocessor (Sass, Less, Stylus) to take advantage of:
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Imports</li>
+  <li class="fragment fade-up">Variables</li>
+  <li class="fragment fade-up">Functions</li>
+  <li class="fragment fade-up">Mixins</li>
+  <li class="fragment fade-up">Nesting</li>
+</ul>
+</script></section><section  data-markdown><script type="text/template">## Divide styles into meaningful files
+
+<pre><code class="scss" data-noescape>
+@import "variables";
+@import "mixins";
+@import "normalize";
+@import "typography";
+@import "headings";
+@import "buttons";
+@import "layout";
+@import "carousel";
+</code></pre>
+</script></section><section  data-markdown><script type="text/template">## Prefix your variable names
+
+<pre><code class="scss" data-noescape>
+// Colors
+$c-warning: red;
+$c-primary: blue;
+$c-background: white;
+</code></pre>
+
+<figure class="fragment fade-up">
+  <img src="assets/color-autocompletion.jpg" alt="Variable Autocompletion">
+</figure>
+</script></section><section  data-markdown><script type="text/template">## Scope your variables
+
+<pre><code class="scss" data-noescape>
+.alert {
+  $background-color: red;
+  $foreground-color: cream;
+  
+  background-color: $background-color;
+  color: $foreground-color;
+}
+</code></pre>
+</script></section><section  data-markdown><script type="text/template"># Source Ordering
+
+### The Inverted Triangle Method</script></section><section  data-markdown><script type="text/template">## ITCSS Will Prevent
+
+<ul class="u-txt-larger">
+  <li class="fragment fade-up">Namespace Collisions</li>
+  <li class="fragment fade-up">Specificity Wrestling</li>
+  <li class="fragment fade-up">Leaky Styles</li>
+  <li class="fragment fade-up">Inadvertant Regressions</li>
+</ul>
+
+<aside class="notes"><p>ITCSS is a method of ordering your CSS settings and rules to prevent 
+namespace collisions, specificity wrestling, leaky styles and inadvertent 
+regressions.</p>
+</aside></script></section><section  data-markdown><script type="text/template"><figure>
+  <img src="assets/itcss1.jpg" alt="ITCSS Illustration 1">
+</figure></script></section><section  data-markdown><script type="text/template"><figure>
+  <img src="assets/itcss2.jpg" alt="ITCSS Illustration 2">
+</figure></script></section><section  data-markdown><script type="text/template"><pre><code class="scss" data-noescape>
+@import "settings.global";
+@import "settings.colors";
+@import "tools.functions";
+@import "tools.mixins";
+@import "generic.box-sizing";
+@import "generic.normalize";
+@import "elements.headings";
+@import "elements.links";
+@import "objects.wrappers";
+@import "objects.grid";
+@import "components.nav";
+@import "components.buttons";
+@import "components.promos";
+@import "trumps.utilities";
+@import "trumps.ie8";
+</code></pre></script></section><section  data-markdown><script type="text/template"># Questions?
+
+![Twitter](data:image/svg+xml;base64,PHN2ZyBpZD0iTG9nb19GSVhFRCIgZGF0YS1uYW1lPSJMb2dvIOKAlCBGSVhFRCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7fS5jbHMtMntmaWxsOiMxZGExZjI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5Ud2l0dGVyX0xvZ29fQmx1ZTwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE1My42MiwzMDEuNTljOTQuMzQsMCwxNDUuOTQtNzguMTYsMTQ1Ljk0LTE0NS45NCwwLTIuMjIsMC00LjQzLS4xNS02LjYzQTEwNC4zNiwxMDQuMzYsMCwwLDAsMzI1LDEyMi40N2ExMDIuMzgsMTAyLjM4LDAsMCwxLTI5LjQ2LDguMDcsNTEuNDcsNTEuNDcsMCwwLDAsMjIuNTUtMjguMzcsMTAyLjc5LDEwMi43OSwwLDAsMS0zMi41NywxMi40NSw1MS4zNCw1MS4zNCwwLDAsMC04Ny40MSw0Ni43OEExNDUuNjIsMTQ1LjYyLDAsMCwxLDkyLjQsMTA3LjgxYTUxLjMzLDUxLjMzLDAsMCwwLDE1Ljg4LDY4LjQ3QTUwLjkxLDUwLjkxLDAsMCwxLDg1LDE2OS44NmMwLC4yMSwwLC40MywwLC42NWE1MS4zMSw1MS4zMSwwLDAsMCw0MS4xNSw1MC4yOCw1MS4yMSw1MS4yMSwwLDAsMS0yMy4xNi44OCw1MS4zNSw1MS4zNSwwLDAsMCw0Ny45MiwzNS42MiwxMDIuOTIsMTAyLjkyLDAsMCwxLTYzLjcsMjJBMTA0LjQxLDEwNC40MSwwLDAsMSw3NSwyNzguNTVhMTQ1LjIxLDE0NS4yMSwwLDAsMCw3OC42MiwyMyIvPjwvc3ZnPgo=) <!-- .element style="height: 80px; vertical-align: -100%; margin: 0 0.3em;" --> <br>
+[@nrambeck](http://twitter.com/nrambeck) <!-- .element class="u-txt-xl" -->
+
+![Sparkbox](data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjIwcHgiIHZpZXdCb3g9IjAgMCA1NjAgMTI3IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogIDxwYXRoIGZpbGw9IiMyNjI2MjYiIGQ9Ik0xNzkuMjg5MSwxMDMuMTQyOSBMMTcyLjYyNTEsOTYuNDk1OSBMMTcyLjYyMTEsNzcuNjgyOSBMMTgzLjUwOTEsNzcuNjQ5OSBMMTgzLjUzNTEsODYuNTM0OSBDMTgzLjYzMDEsOTAuNDQwOSAxODUuMTkzMSw5Mi4zMzk5IDE4OC4yOTkxLDkyLjMzOTkgQzE5MS41NTYxLDkyLjMzNDkgMTkzLjAyNzEsOTAuNDQwOSAxOTMuMDI3MSw4Ni41MzQ5IEwxOTMuMDI3MSw3My4wMzU5IEwxNzIuMzI0MSw2MS40MjY5IEwxNzIuMzE5MSwzMy4xMzY5IEwxNzguNzU2MSwyNi42ODM5IEwxOTYuNzc1MSwyNi42NzM5IEwyMDMuODQwMSwzMy43MTU5IEwyMDMuODQ5MSw1MC4zMjY5IEwxOTMuMjYxMSw1MC4zNDk5IEwxOTMuMjM1MSw0Mi45OTA5IEMxOTMuMzI4MSwzOS4zMDc5IDE5MS43NDQxLDM3LjM4NDkgMTg4LjUzMTEsMzcuMjg0OSBMMTg4LjUwNjEsMzcuMjg0OSBDMTg2Ljc1MDEsMzcuMjg0OSAxODUuNTg5MSwzNy42OTA5IDE4NC44MjMxLDM4LjQ4MDkgQzE4My44OTYxLDM5LjQyNTkgMTgzLjQ3NTEsNDAuOTAzOSAxODMuNTM1MSw0Mi45OTA5IEwxODMuNTM1MSw1My4zODY5IEwyMDQuMTM2MSw2NS4zOTE5IEwyMDQuMTUwMSw5Ni4wODI5IEwxOTcuMDkwMSwxMDMuMTQyOSBMMTc5LjI4OTEsMTAzLjE0MjkgWiBNMjE4LjIwNTcsMTAzLjE0MjYgTDIxOC4xNzk3LDI2LjY5OTYgTDI0MS40MzE3LDI2LjY3NDYgTDI0OS42MDE3LDM0LjgyNzYgTDI0OS42MTA3LDYzLjIwMDYgTDI0MS40NDk3LDcxLjM1ODYgTDIyOS4wNjQ3LDcxLjM2NzYgTDIyOS4wOTQ3LDEwMy4xNDI2IEwyMTguMjA1NywxMDMuMTQyNiBaIE0yMjkuMDk0Nyw2MC44ODY2IEMyMjkuMDk0Nyw2MC44ODY2IDIzNC40MjI3LDYwLjg2MDYgMjM0LjQzNTcsNjAuODYwNiBDMjM1LjkzMjcsNjAuODYwNiAyMzYuODQ5Nyw2MC41NDY2IDIzNy40NDM3LDU5LjkxODYgQzIzOC4wNTM3LDU5LjI5MDYgMjM4LjM0MTcsNTguMzI0NiAyMzguMjg1Nyw1Ny4wNjQ2IEwyMzguMjg1Nyw0MC41NzA2IEMyMzguMzQxNywzOS40NTE2IDIzOC4wNzQ3LDM4LjU3NzYgMjM3LjUwMDcsMzcuOTg3NiBDMjM2Ljg2NTcsMzcuMzIwNiAyMzUuODE5NywzNi45Nzk2IDIzNC4zOTc3LDM2Ljk3OTYgTDIyOS4wOTQ3LDM2Ljk3OTYgTDIyOS4wOTQ3LDYwLjg4NjYgWiBNMjc5LjY1MTYsMTAzLjE0MyBMMjc4LjcyNDYsOTIuOTY1IEwyNzAuNzAxNiw5Mi45OTMgTDI2OS44Mjk2LDEwMy4xMiBMMjU4LjUzNzYsMTAzLjE0MyBMMjY2LjY2MjYsMjYuNyBMMjgxLjM2NjYsMjYuNjc0IEwyOTAuNTQ3NiwxMDMuMTQzIEwyNzkuNjUxNiwxMDMuMTQzIFogTTI3MS40MzM2LDgyLjUxNCBMMjc3LjUzNzYsODIuNDgyIEwyNzQuMjIxNiw0OC43NjUgTDI3MS40MzM2LDgyLjUxNCBaIE0zMjQuOTExOCwxMDMuMTQyNyBMMzE5Ljk1NTgsNzEuMDQzNyBMMzE1LjY1NTgsNzEuMDYyNyBMMzE1LjY3NDgsMTAzLjEyMDcgTDMwNC41OTM4LDEwMy4xNDI3IEwzMDQuNTc0OCwyNi42OTk3IEwzMjcuNTI1OCwyNi42NzM3IEwzMzUuNTg1OCwzNC43MjU3IEwzMzUuNTk1OCw2My4wMDM3IEwzMzAuNTU0OCw2OC4wNTA3IEwzMzUuODA4OCwxMDMuMTQyNyBMMzI0LjkxMTgsMTAzLjE0MjcgWiBNMzE1LjY3NDgsNjAuNDg1NyBDMzE1LjY3NDgsNjAuNDg1NyAzMjEuMDAyOCw2MC40NjM3IDMyMS4wMTE4LDYwLjQ2MzcgQzMyMy41Nzc4LDYwLjQ2MzcgMzI0Ljc4MjgsNTkuMjUxNyAzMjQuODc1OCw1Ni44NjU3IEwzMjQuODc1OCw0MC4zNzU3IEMzMjQuNzgyOCwzOC4wNDk3IDMyMy41Njk4LDM2Ljg3NTcgMzIxLjI3MDgsMzYuODc1NyBMMzE1LjY3NDgsMzYuODc3NyBMMzE1LjY3NDgsNjAuNDg1NyBaIE0zNzIuMzc4OSwxMDMuMTQyOSBMMzYyLjg5OTksNzEuMjQ2OSBMMzYyLjk1NTksMTAzLjEyMDkgTDM1MS44NjU5LDEwMy4xNDI5IEwzNTEuODM3OSwyNi42OTk5IEwzNjIuOTI4OSwyNi42NzM5IEwzNjIuOTU1OSw2MS4zODg5IEwzNzIuMzQxOSwyNi42ODk5IEwzODMuNDIyOSwyNi42NzM5IEwzNzMuNzEyOSw2Ni4yMjU5IEwzODMuNzY2OSwxMDMuMTQyOSBMMzcyLjM3ODksMTAzLjE0MjkgWiBNMzk2LjQxMzYsMTAzLjE0MyBMMzk2LjM4NDYsMjYuNyBMNDE5Ljc0MzYsMjYuNjc0IEw0MjguMDA4NiwzNC45MjUgTDQyOC4wMDg2LDU5LjY4IEw0MjIuOTc3Niw2NC43MjUgTDQyOC4wMDg2LDY5LjcwOSBMNDI4LjAwODYsOTUuMDc0IEw0MTkuOTU1NiwxMDMuMTQzIEwzOTYuNDEzNiwxMDMuMTQzIFogTTQwNy4zOTI2LDU5Ljc4NCBMNDEyLjEyNzYsNTkuNzU0IEM0MTMuODQxNiw1OS43NTQgNDE0Ljk0MzYsNTkuMzY5IDQxNS42NTg2LDU4LjYxNCBDNDE2LjQ1NDYsNTcuNzc0IDQxNi44MDY2LDU2LjQ0NiA0MTYuNzA0Niw1NC42NTYgTDQxNi43MDQ2LDQxLjQ4MyBDNDE2Ljc0MTYsNDAuMjIyIDQxNi40MzU2LDM5LjI0NyA0MTUuNzk1NiwzOC41NzggQzQxNS4wOTE2LDM3Ljg0OCA0MTMuOTYxNiwzNy40OCA0MTIuNDMzNiwzNy40OCBMNDA3LjM5MjYsMzcuNDg1IEw0MDcuMzkyNiw1OS43ODQgWiBNNDEyLjA5OTYsOTIuNTMgQzQxMi4zNjg2LDkyLjU1OCA0MTIuNjI3Niw5Mi41NjcgNDEyLjg2OTYsOTIuNTY3IEM0MTUuMzE0Niw5Mi41NjcgNDE2LjYxMjYsOTEuMjE1IDQxNi43MDQ2LDg4LjUzNiBMNDE2LjcwNDYsNzQuMTYxIEM0MTYuNzA0Niw3MS41MzQgNDE1LjI5NTYsNzAuMjU2IDQxMi40MTM2LDcwLjI1NiBMNDA3LjM5MjYsNzAuMjY2IEw0MDcuMzkyNiw5Mi41NTggTDQxMi4wOTk2LDkyLjUzIFogTTQ1MC41MjM1LDEwMy4xNDI4IEw0NDIuNTU1NSw5NS4xOTQ4IEw0NDIuNTU1NSwzNC41NDA4IEw0NTAuNDAyNSwyNi42ODM4IEw0NjUuODAxNSwyNi42NzM4IEw0NzQuMjc5NSwzNS4xMjY4IEw0NzQuMjc5NSw5NC4zNjg4IEw0NjUuNTEzNSwxMDMuMTQyOCBMNDUwLjUyMzUsMTAzLjE0MjggWiBNNDU4LjU2NDUsMzYuODc3OCBDNDU1LjA2MjUsMzcuMTgzOCA0NTMuMzU4NSwzOC44NTM4IDQ1My4zNTg1LDQxLjk4MDggTDQ1My4zNTg1LDg3LjMzMjggQzQ1My4zMTI1LDg4LjkzMDggNDUzLjcxMDUsOTAuMTgwOCA0NTQuNTQzNSw5MS4wNTY4IEM0NTUuNDA1NSw5MS45ODI4IDQ1Ni43Njc1LDkyLjQ3ODggNDU4LjU2NDUsOTIuNTI5OCBDNDYyLjE3NzUsOTIuMzM1OCA0NjMuOTY2NSw5MC41ODQ4IDQ2My44NzU1LDg3LjMzMjggTDQ2My44NzU1LDQxLjk4MDggQzQ2My41Nzc1LDM4LjkwMTggNDYxLjc4MDUsMzcuMTgzOCA0NTguNTY0NSwzNi44Nzc4IFogTTQ4NC41MjY0LDI2LjcgTDQ5NS43ODM0LDI2LjcgTDUwMi43MjM0LDQ2LjUwOSBMNTA4LjU0MzQsMjYuNyBMNTE5LjIwNzQsMjYuNyBMNTA4LjM0ODQsNjIuODk0IEw1MTkuNTEyNCwxMDMuMTIgTDUwOC41NDM0LDEwMy4xMiBMNTAyLjQxODQsODEuMTk5IEw0OTUuODg1NCwxMDMuMTIgTDQ4NC45MjQ0LDEwMy4xMiBMNDk3LjI5NDQsNjMuMDA0IEw0ODQuNTI2NCwyNi43IFoiIC8+CiAgPHBhdGggZmlsbD0iIzI2MjYyNiIgZD0iTTEyMS4zNzEyLDAuMDAwMiBDMTIzLjk4MDIsMC4wMDAyIDEyNi4xMTUyLDIuMTM1MiAxMjYuMTE1Miw0Ljc0NDIgTDEyNi4xMTUyLDEyMS4zNzIyIEMxMjYuMTE1MiwxMjMuOTgxMiAxMjMuOTgwMiwxMjYuMTE2MiAxMjEuMzcxMiwxMjYuMTE2MiBMNC43NDMyLDEyNi4xMTYyIEMyLjEzNTIsMTI2LjExNjIgMC4wMDAyLDEyMy45ODEyIDAuMDAwMiwxMjEuMzcyMiBMMC4wMDAyLDQuNzQ0MiBDMC4wMDAyLDIuMTM1MiAyLjEzNTIsMC4wMDAyIDQuNzQzMiwwLjAwMDIgTDEyMS4zNzEyLDAuMDAwMiBaIE0xMDIuMjQxMiw2MS42MDgyIEMxMDIuNDU2Miw2MS40OTcyIDEwMi41OTkyLDYxLjI3NDIgMTAyLjU5OTIsNjEuMDE1MiBDMTAyLjU5OTIsNjAuNjQ3MiAxMDIuMzAzMiw2MC4zNDgyIDEwMS45MzIyLDYwLjM0ODIgTDk0LjU1NTIsNjAuMzQ4MiBMMzUuMzc1Miw2MC4zNDgyIEw3Ni45NTEyLDMyLjMwNDIgTDY0LjI5MjIsNTMuNzg4MiBDNjQuMjQ1Miw1My44ODMyIDY0LjIxMTIsNTMuOTg5MiA2NC4yMTEyLDU0LjEwODIgQzY0LjIxMTIsNTQuNDc1MiA2NC41MTAyLDU0Ljc3MzIgNjQuODgwMiw1NC43NzMyIEw2NC44ODAyLDU0Ljc3NTIgTDY5LjkwOTIsNTQuNzc1MiBMNjkuOTA5Miw1NC43NzAyIEw4MS44NTIyLDU0Ljc3MDIgQzgxLjkyNDIsNTQuNzczMiA4MS45ODkyLDU0Ljc3NTIgODIuMDU2Miw1NC43NzUyIEM4OC40NzAyLDU0Ljc3NTIgOTMuNjY4Miw0OS41NzQyIDkzLjY2ODIsNDMuMTYzMiBDOTMuNjY4MiwzNy4yNTQyIDg5LjI1MTIsMzIuMzc0MiA4My41NDEyLDMxLjY0NjIgTDkyLjAyNDIsMTcuMjM4MiBDOTIuMTAyMiwxNy4xMjcyIDkyLjE0MzIsMTcuMDAwMiA5Mi4xNDMyLDE2Ljg2MzIgQzkyLjE0MzIsMTYuNDk1MiA5MS44NDUyLDE2LjE5NjIgOTEuNDc3MiwxNi4xOTYyIEM5MS4zMzUyLDE2LjE5NjIgOTEuMjA1MiwxNi4yNDAyIDkxLjA5OTIsMTYuMzE2MiBMOTEuMDk5MiwxNi4zMTQyIEw4My4yNTgyLDIxLjYwMzIgTDgzLjI1NDIsMjEuNjE0MiBMNjguNTAzMiwzMS41NTgyIEwzNC43NzAyLDMxLjU1ODIgQzM0LjQxNjIsMzEuNTU4MiAzNC4xMjQyLDMxLjgzODIgMzQuMTA4MiwzMi4xOTIyIEwzNC4xMDgyLDMyLjIyMjIgTDM0LjEwODIsMzYuODk5MiBMMzQuMTA4Miw1NC43NjEyIEwxOS43MzMyLDY0LjQ1NzIgQzE5LjUzMzIsNjQuNTc1MiAxOS4zOTcyLDY0Ljc4ODIgMTkuMzk3Miw2NS4wMzQyIEMxOS4zOTcyLDY1LjQwMDIgMTkuNjk4Miw2NS42OTYyIDIwLjA2OTIsNjUuNjk2MiBMMjAuMDc0Miw2NS42OTYyIEwyNy40MzkyLDY1LjY5NjIgTDI3LjQ1NTIsNjUuNjg3MiBMODYuNjM4Miw2NS42ODcyIEw0OC4yMTcyLDkxLjYwMjIgTDU5LjU3MTIsNzIuMzIxMiBDNTkuNjQ2Miw3Mi4yMDEyIDU5LjY5OTIsNzIuMDgwMiA1OS42OTkyLDcxLjkzMjIgQzU5LjY5OTIsNzEuNTcwMiA1OS40MTYyLDcxLjI3NDIgNTkuMDU3Miw3MS4yNjUyIEwzNC43NzMyLDcxLjI2NTIgQzM0LjQwNzIsNzEuMjY1MiAzNC4xMDgyLDcxLjU2MTIgMzQuMTA4Miw3MS45MzIyIEwzNC4xMDgyLDkzLjgxNjIgQzM0LjEwODIsOTQuMTc3MiAzNC4zOTkyLDk0LjQ2OTIgMzQuNzYxMiw5NC40NzQyIEw0MC4zMjMyLDk0LjQ3NDIgTDMzLjE0OTIsMTA2LjY2MzIgQzMzLjA3NzIsMTA2Ljc2OTIgMzMuMDM1MiwxMDYuODkwMiAzMy4wMzUyLDEwNy4wMzQyIEMzMy4wMzUyLDEwNy4zOTkyIDMzLjMzNzIsMTA3LjcwMTIgMzMuNzAyMiwxMDcuNzAxMiBDMzMuODQ4MiwxMDcuNzAxMiAzMy45NzgyLDEwNy42NTAyIDM0LjA4OTIsMTA3LjU3NTIgTDUzLjQ5NTIsOTQuNDg0MiBMODIuMDU2Miw5NC40ODQyIEM4OC40NzAyLDk0LjQ4NDIgOTMuNjY4Miw4OS4yODYyIDkzLjY2ODIsODIuODc1MiBDOTMuNjY4Miw3OC4wNjUyIDkwLjc0NTIsNzMuOTMzMiA4Ni41NzMyLDcyLjE3MzIgTDEwMi4yNDEyLDYxLjYwODIgWiBNODIuMDU2Miw3Ni42MTA3IEM4NS41MTkyLDc2LjYxMDcgODguMzI0Miw3OS40MTM3IDg4LjMyNDIsODIuODc0NyBDODguMzI0Miw4Ni4zMzA3IDg1LjUxOTIsODkuMTM3NyA4Mi4wNTYyLDg5LjEzNzcgTDYxLjQyNDIsODkuMTM3NyBMNzkuOTk3Miw3Ni42MTA3IEw4Mi4wNTYyLDc2LjYxMDcgWiBNMzkuNDQ5Nyw3Ni42MDY4IEw1MC44NTI3LDc2LjYwNjggTDQzLjQ3MDcsODkuMTM3OCBMMzkuNDQ5Nyw4OS4xMzc4IEwzOS40NDk3LDc2LjYwNjggWiBNODEuOTk0MSw0OS40Mjg2IEw3My4wNTUxLDQ5LjQzMDYgTDgwLjQ0NDEsMzYuOTAyNiBMODEuOTk0MSwzNi45MDI2IEM4Mi4wMTIxLDM2LjkwMjYgODIuMDQwMSwzNi44OTk2IDgyLjA1NjEsMzYuODk5NiBDODUuNTE5MSwzNi44OTk2IDg4LjMyNDEsMzkuNzAxNiA4OC4zMjQxLDQzLjE2MzYgQzg4LjMyNDEsNDYuNjI1NiA4NS41MTkxLDQ5LjQzMDYgODIuMDU2MSw0OS40MzA2IEM4Mi4wNDAxLDQ5LjQzMDYgODIuMDEyMSw0OS40Mjg2IDgxLjk5NDEsNDkuNDI4NiBaIE0zOS40NDk3LDM2Ljg5OTMgTDYwLjU5MDcsMzYuODk5MyBMMzkuNDQ5Nyw1MS4xNTQzIEwzOS40NDk3LDM2Ljg5OTMgWiIgLz4KPC9zdmc+Cg==) <!-- .element style="min-width: 400px; background: white" -->
+
+#### [https://nrambeck.github.io/css-architecture/](https://nrambeck.github.io/css-architecture/)
+
+</script></section></div>
+        </div>
+
+        <script src="./lib/js/head.min.js"></script>
+        <script src="./js/reveal.js"></script>
+
+        <script>
+            function extend() {
+              var target = {};
+              for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                  if (source.hasOwnProperty(key)) {
+                    target[key] = source[key];
+                  }
+                }
+              }
+              return target;
+            }
+
+            // Optional libraries used to extend on reveal.js
+            var deps = [
+              { src: './lib/js/classList.js', condition: function() { return !document.body.classList; } },
+              { src: './plugin/markdown/marked.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector('[data-markdown]'); } },
+              { src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+              { src: './plugin/zoom-js/zoom.js', async: true },
+              { src: './plugin/notes/notes.js', async: true },
+              { src: './plugin/math/math.js', async: true }
+            ];
+
+            // default options to init reveal.js
+            var defaultOptions = {
+              controls: true,
+              progress: true,
+              history: true,
+              center: true,
+              transition: 'default', // none/fade/slide/convex/concave/zoom
+              dependencies: deps
+            };
+
+            // options from URL query string
+            var queryOptions = Reveal.getQueryHash() || {};
+
+            var options = {"controls":false,"slideNumber":true};
+            options = extend(defaultOptions, options, queryOptions);
+        </script>
+
+
+        <script>
+          Reveal.initialize(options);
+        </script>
+    </body>
+</html>
