@@ -6,18 +6,20 @@ revealOptions:
 ---
 <!-- .slide: class="slide-home" -->
 # Sustainable Styles
-<hr>
+<hr style="width: 50%; margin: 1em auto; text-align: center;">
 ### Fundamental Principles of CSS Architecture
-<hr>
-#### by Nathan Rambeck
+
+by Nathan Rambeck <!-- .element style="margin-top: 3em;" -->
 
 ![Twitter](assets/Twitter_Logo_Blue.svg) <!-- .element style="height: 50px; vertical-align: -60%; margin-right: 0.3em;" --> [@nrambeck](http://twitter.com/nrambeck)
 ---
-<img src="assets/family.jpg" alt="Rambeck Family">
+![Rambeck Family](assets/rambeck-family.jpg)
 ---
-<img src="assets/sparkbox-lunch.jpg" alt="Sparkbox Lunch">
+![Sparkbox Lunch](assets/sparkbox-lunch.jpg)
 ---
-<img src="assets/better-web-tshirt.jpg" alt="Better Web Shirt">
+![Sparkbox Team](assets/sparkbox-team.jpg)
+---
+![Better Web Shirt](assets/better-web-tshirt.jpg)
 ---
 # Why CSS Architecture?
 ---
@@ -48,7 +50,7 @@ revealOptions:
   <li class="fragment fade-up">Scaling dev team</li>
 </ul>
 ---
-# Building Design Systems
+# Styling Components
 
 <blockquote class="u-txt-xxl">
   Tiny Bootstraps for every client<br>
@@ -58,7 +60,7 @@ revealOptions:
 ## Thinking in terms of modules and components
 
 <figure class="fragment fade-up">
-  <img src="assets/modules-components.jpg" alt="Modules and Components">
+  <img src="assets/techcrunch-components.jpg" alt="Modules and Components">
 </figure>
 ---
 ## Pattern Libraries
@@ -763,3 +765,4 @@ regressions.
 
 #### [https://nrambeck.github.io/css-architecture/](https://nrambeck.github.io/css-architecture/)
 
+Note: please provide feedback
